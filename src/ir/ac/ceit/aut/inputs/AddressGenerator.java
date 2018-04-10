@@ -12,13 +12,25 @@ public class AddressGenerator {
         addresses = new String[COUNT];
         Random random = new Random();
         for(int i = 0; i < 100; i++){
-            addresses[i] = toBinaryString( (random.nextLong() % (MAX - MIN)) + MIN);
+            addresses[i] = toBinaryString( (Math.abs(random.nextLong()) % (MAX - MIN)) + MIN);
         }
-//        for (String address : addresses) {
-//            System.out.println(address);
-//            if(address != null)
-//                System.out.println(toLong(address));
-//        }
+        for (int i = 100;i<addresses.length; i++) {
+            String number = addresses[Math.abs(random.nextInt())%100];
+            if (Math.abs(random.nextInt())%3 != 0) {
+                for (int j = 1; j < Math.min(Math.abs(random.nextInt())%20+10,MAX-toLong(number)) && i<addresses.length; j++,i++) {
+                    addresses[i] = String.valueOf(toLong(number)+j);
+                }
+            } else {
+                addresses[i] = number;
+            }
+        }
+
+        for (String address : addresses) {
+            System.out.println(address);
+            if(address != null)
+                System.out.println(toLong(address));
+        }
+
     }
 
     public String[] getAddresses() {
