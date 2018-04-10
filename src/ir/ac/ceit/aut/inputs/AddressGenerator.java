@@ -14,19 +14,22 @@ public class AddressGenerator {
         for(int i = 0; i < 100; i++){
             addresses[i] = toBinaryString( (Math.abs(random.nextLong()) % (MAX - MIN)) + MIN);
         }
-        for (int i = 100;i<addresses.length; i++) {
+        for (int i = 100;i<addresses.length; ) {
             String number = addresses[Math.abs(random.nextInt())%100];
             if (Math.abs(random.nextInt())%3 != 0) {
-                for (int j = 1; j < Math.min(Math.abs(random.nextInt())%20+10,MAX-toLong(number)) && i<addresses.length; j++,i++) {
-                    addresses[i] = String.valueOf(toLong(number)+j);
+                long size = Math.min(Math.abs(random.nextInt())%20+10,(MAX-toLong(number)));
+                for (int j = 0; j < size && i<addresses.length; j++,i++) {
+                    addresses[i] = String.valueOf(toBinaryString(toLong(number)+j));
                 }
             } else {
                 addresses[i] = number;
+                i++;
             }
         }
 
-        for (String address : addresses) {
-            System.out.println(address);
+        for (int i = 0; i < addresses.length; i++) {
+            String address = addresses[i];
+            System.out.println(i+":"+address);
             if(address != null)
                 System.out.println(toLong(address));
         }
