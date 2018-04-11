@@ -2,6 +2,7 @@ package ir.ac.ceit.aut.memory;
 
 public abstract class Memory {
     protected int sizeBitCount;
+    protected int blockSize;
     protected int blockSizeBitCount;
     protected Word[] wordArray;
 
@@ -11,6 +12,7 @@ public abstract class Memory {
     public Memory(int sizeBitCount, int blockSizeBitCount) {
         this.sizeBitCount = sizeBitCount;
         this.blockSizeBitCount = blockSizeBitCount;
+        blockSize = (int) Math.pow(2,blockSizeBitCount);
         this.wordArray = new Word[(int) Math.pow(2,sizeBitCount)];
         instantiateWordArr();
     }
