@@ -12,18 +12,16 @@ public class AddressGenerator {
         addresses = new String[COUNT];
         Random random = new Random();
         for(int i = 0; i < 100; i++){
-            addresses[i] = toBinaryString( (Math.abs(random.nextLong()) % (MAX - MIN)) + MIN);
+            addresses[i] = toBinString( (Math.abs(random.nextLong()) % (MAX - MIN)) + MIN);
         }
-        for (int i = 100;i<addresses.length; ) {
+        for (int i = 100; i< addresses.length; ) {
             String number = addresses[Math.abs(random.nextInt())%100];
+            addresses[i++] = number;
             if (Math.abs(random.nextInt())%3 != 0) {
-                long size = Math.min(Math.abs(random.nextInt())%20+10,(MAX-toLong(number)));
-                for (int j = 0; j < size && i<addresses.length; j++,i++) {
-                    addresses[i] = String.valueOf(toBinaryString(toLong(number)+j));
+                long lengthOfLocality = Math.min(Math.abs(random.nextInt())%20+10,(MAX-toLong(number)));
+                for (int j = 0; j < lengthOfLocality && i < addresses.length; j++) {
+                    addresses[i++] = String.valueOf(toBinString(toLong(number)+j));
                 }
-            } else {
-                addresses[i] = number;
-                i++;
             }
         }
 
@@ -44,7 +42,7 @@ public class AddressGenerator {
         return Long.parseUnsignedLong(address,2);
     }
 
-    public static String toBinaryString(long num){
+    public static String toBinString(long num){
         return  Long.toBinaryString(((num  & 0xffffffffL | 0x100000000L ))).substring(1);
     }
 }
