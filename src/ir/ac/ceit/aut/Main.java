@@ -2,6 +2,7 @@ package ir.ac.ceit.aut;
 
 import ir.ac.ceit.aut.address.AddressGenerator;
 import ir.ac.ceit.aut.memory.DirectMapCache;
+import ir.ac.ceit.aut.memory.Word;
 
 public class Main {
 
@@ -25,6 +26,12 @@ public class Main {
         System.out.println(c_b + " -> " + c_b.length());
         System.out.println(n_c + " -> " + n_c.length());
         System.out.println(addressGenerator.toBinString(addressGenerator.toLong(n_c)) + " -> " + n_c.length());
+//        int i = 0;
+//        for (Word word : dm.getWordArray()) {
+//            System.out.println(AddressGenerator.toBinString(i) + "--" + word.getData());
+//            i++;
+//        }
+        dm.containsAddress("00000000000000000000000000000001");
 
     }
 }

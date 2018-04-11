@@ -1,6 +1,8 @@
 package ir.ac.ceit.aut.memory;
 
 
+import ir.ac.ceit.aut.address.AddressGenerator;
+
 public class DirectMapCache extends Memory implements Cache {
 
     public DirectMapCache(int sizeBitCount, int blockSize) {
@@ -8,9 +10,15 @@ public class DirectMapCache extends Memory implements Cache {
     }
 
     @Override
-    protected boolean containsAddress(String searching) {
+    public boolean containsAddress(String searching) {
         // TODO
-        return false;
+        String[] parsed = parseDmAddress(searching);
+        long index = AddressGenerator.toLong(parsed[1]);
+        long tag = AddressGenerator.toLong(parsed[0]);
+        Word found = wordArray[(int)index];
+        String[] foundAddress = parseDmAddress(wordArray[(int)index].getData());
+        System.out.println(found.isValid() && tag == AddressGenerator.toLong(foundAddress[0]));
+        return found.isValid() && tag == AddressGenerator.toLong(foundAddress[0]);
     }
 
     @Override

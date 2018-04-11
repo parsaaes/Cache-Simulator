@@ -15,8 +15,8 @@ public abstract class Memory {
         instantiateWordArr();
     }
     private void instantiateWordArr(){
-        for (Word word : wordArray) {
-            word = new Word();
+        for (int i = 0; i < wordArray.length; i++) {
+            wordArray[i] = new Word();
         }
     }
 
@@ -39,5 +39,9 @@ public abstract class Memory {
                 address.substring(address.length() - sizeBitCount,address.length()-  blockSizeBitCount),
                 address.substring(address.length() - blockSizeBitCount)
                 };
+    }
+
+    public Word[] getWordArray() {
+        return wordArray;
     }
 }
