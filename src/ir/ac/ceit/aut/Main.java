@@ -22,10 +22,8 @@ public class Main {
         System.out.println(c_b + " -> " + c_b.length());
         System.out.println(n_c + " -> " + n_c.length());
 
-
-
-
-        dm.requestWord(AddressGenerator.toBinString((long) (Math.pow(2,6)-1)));
+        /*
+                dm.requestWord(AddressGenerator.toBinString((long) (Math.pow(2,6)-1)));
 
         for (int i = 0; i < dm.getWordArray().length; i++) {
             System.out.println(i + "- " + dm.getWordArray()[i].getData() + " "+ dm.getWordArray()[i].isValid());
@@ -39,6 +37,35 @@ public class Main {
 
         dm.requestWord(AddressGenerator.toBinString((long) (Math.pow(2,22)-12)));
         dm.requestWord(AddressGenerator.toBinString((long) (Math.pow(2,32)-8)));
+         */
 
+
+        // Some other examples:
+        for (int i = 0; i < dm.getWordArray().length; i++) {
+            System.out.println(i + "- " + dm.getWordArray()[i].getData() + " "+ dm.getWordArray()[i].isValid());
+        }
+
+        System.out.println("requested->");
+        dm.requestWord("00000000001111111111111111111110");
+
+        for (int i = 0; i < dm.getWordArray().length; i++) {
+            System.out.println(i + "- " + dm.getWordArray()[i].getData() + " "+ dm.getWordArray()[i].isValid());
+        }
+
+        System.out.println("requested->");
+        dm.requestWord("00000000001111111111111111111110");
+
+        for (int i = 0; i < dm.getWordArray().length; i++) {
+            System.out.println(i + "- " + dm.getWordArray()[i].getData() + " "+ dm.getWordArray()[i].isValid());
+        }
+
+        System.out.println("requested->");
+        dm.requestWord("01100000001111111111111111111110");
+
+        for (int i = 0; i < dm.getWordArray().length; i++) {
+            System.out.println(i + "- " + dm.getWordArray()[i].getData() + " "+ dm.getWordArray()[i].isValid());
+        }
+        System.out.println("requested->");
+        dm.requestWord("00000000001111111111111111111110");
     }
 }
