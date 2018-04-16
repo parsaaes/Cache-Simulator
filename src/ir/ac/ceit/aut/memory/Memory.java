@@ -2,6 +2,7 @@ package ir.ac.ceit.aut.memory;
 
 public abstract class Memory {
     protected int sizeBitCount;
+    protected int size;
     protected int blockSize;
     protected int blockSizeBitCount;
     protected Word[] wordArray;
@@ -13,6 +14,7 @@ public abstract class Memory {
         this.sizeBitCount = sizeBitCount;
         this.blockSizeBitCount = blockSizeBitCount;
         blockSize = (int) Math.pow(2,blockSizeBitCount);
+        size = (int) Math.pow(2,sizeBitCount);
         this.wordArray = new Word[(int) Math.pow(2,sizeBitCount)];
         instantiateWordArr();
     }
@@ -28,19 +30,6 @@ public abstract class Memory {
 
     public int getBlockSizeBitCount() {
         return blockSizeBitCount;
-    }
-
-    /**
-     * parse binary address by this shape: n-c|c-b|b
-     * @param address address of the memory
-     * @return array of size 3 {n-c,c-b,b}
-     */
-    public String[] parseDmAddress(String address){
-        return new String[]
-                {address.substring(0, address.length() - sizeBitCount),
-                address.substring(address.length() - sizeBitCount,address.length()-  blockSizeBitCount),
-                address.substring(address.length() - blockSizeBitCount)
-                };
     }
 
     public Word[] getWordArray() {

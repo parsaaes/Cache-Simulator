@@ -46,10 +46,23 @@ public class DirectMapCache extends Memory implements Cache {
         String[] parsedFirstWordInBlock = parseDmAddress(firstWordInBlock);
         System.out.println("block first -> " + firstWordInBlock + " index:" + parsedFirstWordInBlock[1] );
         long blockStartIndex = AddressGenerator.toLong(parsedFirstWordInBlock[1]) * blockSize;
-        for(int i = 0; i < Math.pow(2,blockSizeBitCount); i++){
+        for(int i = 0; i < blockSize; i++){
             wordArray[(int) (i + blockStartIndex)].setData(AddressGenerator.toBinString(AddressGenerator.toLong(firstWordInBlock) + i));
             wordArray[(int) (i + blockStartIndex)].setValidBit(true);
         }
     }
 
+
+    /**
+     * parse binary address by this shape: n-c|c-b|b
+     * @param address address of the memory
+     * @return array of size 3 {n-c,c-b,b}
+     */
+    private String[] parseDmAddress(String address){
+        return new String[]
+                {address.substring(0, address.length() - sizeBitCount),
+                        address.substring(address.length() - sizeBitCount,address.length()-  blockSizeBitCount),
+                        address.substring(address.length() - blockSizeBitCount)
+                };
+    }
 }
