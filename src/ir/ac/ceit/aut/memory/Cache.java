@@ -1,5 +1,6 @@
 package ir.ac.ceit.aut.memory;
 
 public interface Cache {
-    void requestWord(String word);
+    boolean requestWord(String word);
+    void insertData(String word);
 }

@@ -11,9 +11,7 @@ package ir.ac.ceit.aut.memory;
 /*
 TODO: Faghat nokte ine ke insertData ro vase Direct map implement kon!
 TODO: RequestWord ham felan be in soorat taghir bede(String bargardoone).
-
  */
-//##Ino man mizanam
 public class VictimCache extends FullyAssociativeCache {
 
     //size is in range(4,8).(it must be small)
@@ -22,9 +20,10 @@ public class VictimCache extends FullyAssociativeCache {
     }
 
     @Override
-    public void requestWord(String word) {
+    public boolean requestWord(String word) {
         super.requestWord(word);
         //...
+        return false;
     }
 
 }

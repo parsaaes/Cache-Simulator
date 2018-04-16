@@ -31,14 +31,16 @@ public class FullyAssociativeCache extends Memory implements Cache {
     }
 
     @Override
-    public void requestWord(String word) {
+    public boolean requestWord(String word) {
         int requestedWordIndex = getRequestedWordIndex(word);
         if (requestedWordIndex != -1) {
             System.out.println("Hit");
             recordUsage(requestedWordIndex);
+            return true;
         } else {
             System.out.println("Miss");
             insertData(word);
+            return false;
         }
     }
 
