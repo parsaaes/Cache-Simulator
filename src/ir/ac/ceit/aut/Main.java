@@ -10,9 +10,10 @@ public class Main {
     public static void main(String[] args) {
         AddressGenerator addressGenerator = new AddressGenerator();
         addressGenerator.generate("in2");
-        Simulator simulator = new Simulator(12,4);
-        simulator.run(false);
-        simulator.run(true);
+        Simulator simulator1 = new Simulator(12,4);
+        simulator1.run(false);
+        Simulator simulator2 = new Simulator(12,4);
+        simulator2.run(true);
 //
 //        FACache faCache = new FACache(8,4);
 //        System.out.println(faCache.i("00000000000000000000000000000000"));

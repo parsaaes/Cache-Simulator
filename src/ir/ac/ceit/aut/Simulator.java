@@ -35,7 +35,7 @@ public class Simulator {
                     //System.out.println("hit!");
                 }
             }
-            System.out.println("special: " + useSpecialCache + " --> " + String.valueOf(1 - (miss / 500f)));
+            System.out.println("special: " + useSpecialCache + " --> " + String.valueOf((1 - (miss / 500f))*100));
         }
         else {
             for (String s : input) {
@@ -45,7 +45,7 @@ public class Simulator {
                     //System.out.println("hit!");
                 }
             }
-            System.out.println("special: " + useSpecialCache + " --> " + String.valueOf(1 - (miss / 500f)));
+            System.out.println("special: " + useSpecialCache + " --> " + String.valueOf((1 - (miss / 500f))*100));
         }
     }
 
