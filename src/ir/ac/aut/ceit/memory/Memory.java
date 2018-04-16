@@ -1,4 +1,4 @@
-package ir.ac.ceit.aut.memory;
+package ir.ac.aut.ceit.memory;
 
 public abstract class Memory {
     protected int sizeBitCount;

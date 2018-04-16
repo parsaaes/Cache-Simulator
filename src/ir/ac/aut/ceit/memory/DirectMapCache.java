@@ -1,7 +1,7 @@
-package ir.ac.ceit.aut.memory;
+package ir.ac.aut.ceit.memory;
 
 
-import ir.ac.ceit.aut.address.AddressGenerator;
+import ir.ac.aut.ceit.address.AddressGenerator;
 
 public class DirectMapCache extends Memory implements Cache {
 

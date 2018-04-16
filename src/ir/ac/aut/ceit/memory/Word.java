@@ -1,6 +1,6 @@
-package ir.ac.ceit.aut.memory;
+package ir.ac.aut.ceit.memory;
 
-import ir.ac.ceit.aut.address.AddressGenerator;
+import ir.ac.aut.ceit.address.AddressGenerator;
 
 public class Word {
     private String data = AddressGenerator.toBinString(0);

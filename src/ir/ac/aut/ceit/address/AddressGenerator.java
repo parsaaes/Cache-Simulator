@@ -1,4 +1,4 @@
-package ir.ac.ceit.aut.address;
+package ir.ac.aut.ceit.address;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,6 +17,7 @@ public class AddressGenerator {
     }
 
     public void generate(String fileName){
+        // 100 -> 50 and uncomment another method
         int startOfLocality = 100;
         Random random = new Random();
         for(int i = 0; i < startOfLocality; i++){
@@ -26,8 +27,8 @@ public class AddressGenerator {
         for (int i = startOfLocality; i< addresses.length; ) {
             String number = addresses[Math.abs(random.nextInt()) % (startOfLocality / 5 * (int)Math.ceil(( 2d * i / COUNT)))];
             addresses[i++] = number;
-            if ((Math.abs(random.nextInt()) % 10) == 0) {
-                long lengthOfLocality = Math.min(Math.abs(random.nextInt()) % 5 + 3,(MAX-toLong(number)));
+            if ((Math.abs(random.nextInt()) % 5) == 0) {
+                long lengthOfLocality = Math.min(Math.abs(random.nextInt()) % 3 + 2,(MAX-toLong(number)));
                 for (int j = 0; j < lengthOfLocality && i < addresses.length; j++) {
                     addresses[i++] = String.valueOf(toBinString(toLong(number)+j));
                 }

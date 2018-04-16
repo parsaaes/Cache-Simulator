@@ -1,9 +1,8 @@
-package ir.ac.ceit.aut;
+package ir.ac.aut.ceit;
 
-import ir.ac.ceit.aut.memory.DirectMapCache;
-import ir.ac.ceit.aut.memory.FACache;
-import ir.ac.ceit.aut.memory.VictimCache;
-import ir.ac.ceit.aut.processor.CPU;
+import ir.ac.aut.ceit.memory.FACache;
+import ir.ac.aut.ceit.memory.DirectMapCache;
+import ir.ac.aut.ceit.processor.CPU;
 
 import java.util.ArrayList;
 
@@ -12,16 +11,16 @@ public class Simulator {
     private DirectMapCache mainCache;
     private FACache victimCache;
 
-    public Simulator(int sizeBitCount, int blockSizeBitCount) {
-        cpu = new CPU("inputs/in2.txt",500);
-        mainCache = new DirectMapCache(sizeBitCount,blockSizeBitCount);
-        victimCache = new FACache(8,blockSizeBitCount);
+    public Simulator(int dmSizeBitCount, int victimSizeBitCount, int blockSizeBitCount, String instructions) {
+        cpu = new CPU(instructions,500);
+        mainCache = new DirectMapCache(dmSizeBitCount,blockSizeBitCount);
+        victimCache = new FACache(victimSizeBitCount,blockSizeBitCount);
     }
-    public void run(boolean useSpecialCache) {
+    public void run(boolean useVictim) {
         int miss = 0;
         String evictedWordData = "";
         ArrayList<String> input = cpu.getRequestedAddresses();
-        if(useSpecialCache) {
+        if(useVictim) {
             for (String s : input) {
                 if (mainCache.requestWord(s) == false) {
                     if (victimCache.requestWord(s) == false) {
@@ -35,7 +34,7 @@ public class Simulator {
                     //System.out.println("hit!");
                 }
             }
-            System.out.println("special: " + useSpecialCache + " --> " + String.valueOf((1 - (miss / 500f))*100));
+            System.out.println("special: " + useVictim + " --> " + String.valueOf((1 - (miss / 500f))*100));
         }
         else {
             for (String s : input) {
@@ -45,7 +44,7 @@ public class Simulator {
                     //System.out.println("hit!");
                 }
             }
-            System.out.println("special: " + useSpecialCache + " --> " + String.valueOf((1 - (miss / 500f))*100));
+            System.out.println("special: " + useVictim + " --> " + String.valueOf((1 - (miss / 500f))*100));
         }
     }
 
