@@ -44,7 +44,7 @@ public class DirectMapCache extends Memory implements Cache {
             firstWordInBlock += "0";
         }
         String[] parsedFirstWordInBlock = parseDmAddress(firstWordInBlock);
-        System.out.println("block first -> " + firstWordInBlock + " index:" + parsedFirstWordInBlock[1] );
+        //System.out.println("block first -> " + firstWordInBlock + " index:" + parsedFirstWordInBlock[1] );
         long blockStartIndex = AddressGenerator.toLong(parsedFirstWordInBlock[1]) * blockSize;
         for(int i = 0; i < blockSize; i++){
             wordArray[(int) (i + blockStartIndex)].setData(AddressGenerator.toBinString(AddressGenerator.toLong(firstWordInBlock) + i));

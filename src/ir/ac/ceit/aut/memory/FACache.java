@@ -19,13 +19,13 @@ public class FACache extends Memory implements Cache {
         age++;
         if(this.containsAddress(word)){
             // hit
-            System.out.println("fa says: hit!");
+            //System.out.println("fa says: hit!");
             updateUsage(word);
             return true;
         }
         else {
             // miss
-             System.out.println("fa says: miss!");
+            //System.out.println("fa says: miss!");
             insertData(word);
             return false;
         }
@@ -65,7 +65,6 @@ public class FACache extends Memory implements Cache {
                 result = i;
             }
         }
-        System.out.println("lru-> "+result);
         return result;
     }
 
