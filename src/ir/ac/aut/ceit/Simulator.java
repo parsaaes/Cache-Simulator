@@ -34,7 +34,7 @@ public class Simulator {
                     } else {
 
                         mainCache.insertData(s);
-                        victimCache.rePlaceData(mainCache.getEvictedBlockFirstWord(),s);
+                        victimCache.rePlaceData(mainCache.getEvictedBlockFirstWord(), mainCache.isEvictedBlockValid(),s);
 
                         //System.out.println("dm miss! victim hit!");
 

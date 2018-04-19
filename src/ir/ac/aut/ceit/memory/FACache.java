@@ -45,15 +45,19 @@ public class FACache extends Memory implements Cache {
         updateUsage(word);
     }
 
-    public void rePlaceData(String word, String lastWord) {
+    public void rePlaceData(String word, boolean validity, String lastWord) {
         String firstWordInBlock = parseFAAddress(word)[0];
         for(int i = 0; i < blockSizeBitCount; i++){
             firstWordInBlock += "0";
         }
         int blockStartIndex =  getWordIndex(lastWord);
+        if (blockStartIndex < 0){
+            System.err.println("e in getting a word index in FA: " + lastWord + "-" + blockStartIndex );
+            return;
+        }
         for(int i = 0; i < blockSize; i++){
             wordArray[(int) (i + blockStartIndex)].setData(AddressGenerator.toBinString(AddressGenerator.toLong(firstWordInBlock) + i));
-            wordArray[(int) (i + blockStartIndex)].setValidBit(true);
+            wordArray[(int) (i + blockStartIndex)].setValidBit(validity);
         }
         updateUsage(word);
     }
@@ -83,7 +87,7 @@ public class FACache extends Memory implements Cache {
     private int getWordIndex(String word){
         String tag = parseFAAddress(word)[0];
         for (int i = 0; i < wordArray.length; i++) {
-            if(parseFAAddress(wordArray[i].getData())[0].equals(tag)){
+            if(parseFAAddress(wordArray[i].getData())[0].equals(tag) && wordArray[i].isValid()){
                 return i;
             }
         }
