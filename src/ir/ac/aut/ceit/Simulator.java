@@ -24,19 +24,26 @@ public class Simulator {
             for (String s : input) {
                 if (mainCache.requestWord(s) == false) {
                     if (victimCache.requestWord(s) == false) {
+
                         miss++;
                         mainCache.insertData(s);
                         victimCache.insertData(mainCache.getEvictedBlockFirstWord());
+
                         //System.out.println("dm miss! victim miss!");
+
                     } else {
+
                         mainCache.insertData(s);
                         victimCache.rePlaceData(mainCache.getEvictedBlockFirstWord(),s);
+
                         //System.out.println("dm miss! victim hit!");
+
                     }
-                    //mainCache.insertData(s);
-                    //miss++;
-                } else {
+                }
+                else {
+
                     //System.out.println("dm hit!");
+
                 }
             }
             System.out.println("special: " + useVictim + " --> " + String.valueOf((1 - (miss / 500f))*100));
@@ -46,7 +53,8 @@ public class Simulator {
                 if (mainCache.requestWord(s) == false) {
                     miss++;
                     mainCache.insertData(s);
-                } else {
+                }
+                else {
                     //System.out.println("hit!");
                 }
             }

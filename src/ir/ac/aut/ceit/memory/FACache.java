@@ -16,7 +16,6 @@ public class FACache extends Memory implements Cache {
 
     @Override
     public boolean requestWord(String word) {
-        age++;
         if(this.containsAddress(word)){
             // hit
             //System.out.println("fa says: hit!");
@@ -43,7 +42,7 @@ public class FACache extends Memory implements Cache {
             wordArray[(int) (i + blockStartIndex)].setData(AddressGenerator.toBinString(AddressGenerator.toLong(firstWordInBlock) + i));
             wordArray[(int) (i + blockStartIndex)].setValidBit(true);
         }
-        usage[getLRUIndex()] = age;
+        updateUsage(word);
     }
 
     public void rePlaceData(String word, String lastWord) {
@@ -56,6 +55,7 @@ public class FACache extends Memory implements Cache {
             wordArray[(int) (i + blockStartIndex)].setData(AddressGenerator.toBinString(AddressGenerator.toLong(firstWordInBlock) + i));
             wordArray[(int) (i + blockStartIndex)].setValidBit(true);
         }
+        updateUsage(word);
     }
 
     @Override
@@ -91,6 +91,7 @@ public class FACache extends Memory implements Cache {
     }
 
     private void updateUsage(String word) {
+        age++;
         for (int i = 0; i < wordArray.length; i++) {
             if(wordArray[i].getData().equals(word)){
                 usage[i / blockSize] = age;
