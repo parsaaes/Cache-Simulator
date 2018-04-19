@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        AddressGenerator addressGenerator = new AddressGenerator();
-//        addressGenerator.generate("test");
+        AddressGenerator addressGenerator = new AddressGenerator();
+        addressGenerator.generate("inp5");
 
         String instructions = "inputs/inp5.txt";
         Simulator simulator1 = new Simulator(12,8,4,instructions);

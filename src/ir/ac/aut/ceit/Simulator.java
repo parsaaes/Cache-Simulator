@@ -25,15 +25,18 @@ public class Simulator {
                 if (mainCache.requestWord(s) == false) {
                     if (victimCache.requestWord(s) == false) {
                         miss++;
-                        victimCache.insertData(s);
                         mainCache.insertData(s);
-                        //System.out.println("miss!");
+                        victimCache.insertData(mainCache.getEvictedBlockFirstWord());
+                        //System.out.println("dm miss! victim miss!");
                     } else {
-                        //System.out.println("victim hit!");
+                        mainCache.insertData(s);
+                        victimCache.insertData(mainCache.getEvictedBlockFirstWord());
+                        //System.out.println("dm miss! victim hit!");
                     }
+                    //mainCache.insertData(s);
                     //miss++;
                 } else {
-                    //System.out.println("hit!");
+                    //System.out.println("dm hit!");
                 }
             }
             System.out.println("special: " + useVictim + " --> " + String.valueOf((1 - (miss / 500f))*100));

@@ -5,6 +5,7 @@ import ir.ac.aut.ceit.address.AddressGenerator;
 
 public class DirectMapCache extends Memory implements Cache {
 
+    private String evictedBlockFirstWord = AddressGenerator.toBinString(0);
     public DirectMapCache(int sizeBitCount, int blockSizeBitCount) {
         super(sizeBitCount, blockSizeBitCount);
     }
@@ -44,12 +45,19 @@ public class DirectMapCache extends Memory implements Cache {
             firstWordInBlock += "0";
         }
         String[] parsedFirstWordInBlock = parseDmAddress(firstWordInBlock);
+
+        evictedBlockFirstWord = firstWordInBlock;
+
         //System.out.println("block first -> " + firstWordInBlock + " index:" + parsedFirstWordInBlock[1] );
         long blockStartIndex = AddressGenerator.toLong(parsedFirstWordInBlock[1]) * blockSize;
         for(int i = 0; i < blockSize; i++){
             wordArray[(int) (i + blockStartIndex)].setData(AddressGenerator.toBinString(AddressGenerator.toLong(firstWordInBlock) + i));
             wordArray[(int) (i + blockStartIndex)].setValidBit(true);
         }
+    }
+
+    public String getEvictedBlockFirstWord() {
+        return evictedBlockFirstWord;
     }
 
 
