@@ -27,7 +27,7 @@ public class Simulator {
 
                         miss++;
                         mainCache.insertData(s);
-                        victimCache.insertData(mainCache.getEvictedBlockFirstWord());
+                        victimCache.insertData(mainCache.getEvictedBlockFirstWord(), mainCache.isEvictedBlockValid());
 
                         //System.out.println("dm miss! victim miss!");
 

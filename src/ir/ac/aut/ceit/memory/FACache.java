@@ -45,6 +45,19 @@ public class FACache extends Memory implements Cache {
         updateUsage(word);
     }
 
+    public void insertData(String word, boolean validity) {
+        String firstWordInBlock = parseFAAddress(word)[0];
+        for(int i = 0; i < blockSizeBitCount; i++){
+            firstWordInBlock += "0";
+        }
+        int blockStartIndex =  getLRUIndex() * blockSize;
+        for(int i = 0; i < blockSize; i++){
+            wordArray[(int) (i + blockStartIndex)].setData(AddressGenerator.toBinString(AddressGenerator.toLong(firstWordInBlock) + i));
+            wordArray[(int) (i + blockStartIndex)].setValidBit(validity);
+        }
+        updateUsage(word);
+    }
+
     public void rePlaceData(String word, boolean validity, String lastWord) {
         String firstWordInBlock = parseFAAddress(word)[0];
         for(int i = 0; i < blockSizeBitCount; i++){
