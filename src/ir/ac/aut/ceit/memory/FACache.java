@@ -46,6 +46,18 @@ public class FACache extends Memory implements Cache {
         usage[getLRUIndex()] = age;
     }
 
+    public void rePlaceData(String word, String lastWord) {
+        String firstWordInBlock = parseFAAddress(word)[0];
+        for(int i = 0; i < blockSizeBitCount; i++){
+            firstWordInBlock += "0";
+        }
+        int blockStartIndex =  getWordIndex(lastWord);
+        for(int i = 0; i < blockSize; i++){
+            wordArray[(int) (i + blockStartIndex)].setData(AddressGenerator.toBinString(AddressGenerator.toLong(firstWordInBlock) + i));
+            wordArray[(int) (i + blockStartIndex)].setValidBit(true);
+        }
+    }
+
     @Override
     protected boolean containsAddress(String searching) {
         for (int i = 0; i < wordArray.length; i++) {
@@ -66,6 +78,16 @@ public class FACache extends Memory implements Cache {
             }
         }
         return result;
+    }
+
+    private int getWordIndex(String word){
+        String tag = parseFAAddress(word)[0];
+        for (int i = 0; i < wordArray.length; i++) {
+            if(parseFAAddress(wordArray[i].getData())[0].equals(tag)){
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void updateUsage(String word) {

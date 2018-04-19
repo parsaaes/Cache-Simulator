@@ -30,7 +30,7 @@ public class Simulator {
                         //System.out.println("dm miss! victim miss!");
                     } else {
                         mainCache.insertData(s);
-                        victimCache.insertData(mainCache.getEvictedBlockFirstWord());
+                        victimCache.rePlaceData(mainCache.getEvictedBlockFirstWord(),s);
                         //System.out.println("dm miss! victim hit!");
                     }
                     //mainCache.insertData(s);
