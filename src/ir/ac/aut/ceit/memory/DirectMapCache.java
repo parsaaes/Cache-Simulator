@@ -30,7 +30,7 @@ public class DirectMapCache extends Memory implements Cache {
         else {
             // miss
             // System.out.println("dm says: miss!");
-            insertData(word);
+            //insertData(word);
             return false;
         }
     }

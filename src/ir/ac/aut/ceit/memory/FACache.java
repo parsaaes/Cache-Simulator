@@ -26,7 +26,7 @@ public class FACache extends Memory implements Cache {
         else {
             // miss
             //System.out.println("fa says: miss!");
-            insertData(word);
+            //insertData(word);
             return false;
         }
     }

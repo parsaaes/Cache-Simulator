@@ -25,6 +25,8 @@ public class Simulator {
                 if (mainCache.requestWord(s) == false) {
                     if (victimCache.requestWord(s) == false) {
                         miss++;
+                        victimCache.insertData(s);
+                        mainCache.insertData(s);
                         //System.out.println("miss!");
                     } else {
                         //System.out.println("victim hit!");
@@ -40,6 +42,7 @@ public class Simulator {
             for (String s : input) {
                 if (mainCache.requestWord(s) == false) {
                     miss++;
+                    mainCache.insertData(s);
                 } else {
                     //System.out.println("hit!");
                 }
